@@ -1,533 +1,859 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل سفر الحوامل - طيران الخليج</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #002D56; /* Gulf Air Navy */
-            --primary-gold: #C09A5B; /* Gulf Air Gold */
-            --light-bg: #F5F7FA;
-            --white: #FFFFFF;
-            --text-dark: #2C3E50;
-            --text-light: #596A7A;
-            --danger: #E74C3C;
-            --success: #27AE60;
-            --warning: #F39C12;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gulf Air – دليل سفر الحوامل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-        }
+  :root {
+    --gulf-gold: #B8860B;
+    --gulf-gold-light: #D4A017;
+    --gulf-gold-pale: #FFF8E7;
+    --gulf-navy: #0A1628;
+    --gulf-navy-mid: #112240;
+    --gulf-navy-light: #1A3557;
+    --white: #FFFFFF;
+    --text-light: #E8E8E8;
+    --text-muted: #A0A8B8;
+    --green: #16A34A;
+    --green-bg: #DCFCE7;
+    --green-border: #86EFAC;
+    --amber: #B45309;
+    --amber-bg: #FEF3C7;
+    --amber-border: #FCD34D;
+    --red: #DC2626;
+    --red-bg: #FEE2E2;
+    --red-border: #FCA5A5;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.18);
+    --shadow-glow: 0 0 40px rgba(184,134,11,0.25);
+  }
 
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+  html { scroll-behavior: smooth; }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #001A33 100%);
-            color: var(--white);
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    background: var(--gulf-navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(192, 154, 91, 0.1) 0%, transparent 60%);
-            animation: rotateBg 20s linear infinite;
-        }
+  /* ─── BACKGROUND PARTICLES ─── */
+  .bg-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gulf-gold);
+    opacity: 0;
+    animation: float-particle linear infinite;
+  }
 
-        @keyframes rotateBg {
-            100% { transform: rotate(360deg); }
-        }
+  @keyframes float-particle {
+    0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+    10%  { opacity: 0.15; }
+    90%  { opacity: 0.08; }
+    100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+  }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-            color: var(--primary-gold);
-        }
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(180deg, rgba(10,22,40,0) 0%, rgba(17,34,64,0.6) 100%);
+  }
 
-        header p {
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 1;
-        }
+  .dedication {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(184,134,11,0.12);
+    border: 1px solid rgba(184,134,11,0.4);
+    border-radius: 50px;
+    padding: 10px 24px;
+    margin-bottom: 32px;
+    animation: fade-in-down 0.9s ease both;
+  }
+  .dedication .heart {
+    font-size: 20px;
+    animation: heartbeat 1.4s ease-in-out infinite;
+  }
+  .dedication span {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gulf-gold-light);
+    letter-spacing: 0.5px;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+  }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: -30px auto 50px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
+  .hero-plane {
+    font-size: 56px;
+    margin-bottom: 16px;
+    animation: fade-in-down 0.8s ease both 0.1s, plane-float 4s ease-in-out infinite 1s;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(184,134,11,0.5));
+  }
+  @keyframes plane-float {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-12px) rotate(-5deg); }
+  }
 
-        /* Alert Box */
-        .alert-box {
-            background-color: #FEF9E7;
-            border-right: 5px solid var(--warning);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            animation: slideDown 0.8s ease-out;
-        }
+  .hero-title {
+    font-size: clamp(22px, 5vw, 38px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.3;
+    animation: fade-in-up 0.9s ease both 0.2s;
+  }
+  .hero-title span {
+    color: var(--gulf-gold-light);
+    position: relative;
+  }
+  .hero-title span::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gulf-gold-light), transparent);
+    animation: shimmer 2.5s ease infinite;
+  }
+  @keyframes shimmer {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+  }
 
-        .alert-box i {
-            color: var(--warning);
-            font-size: 1.8rem;
-        }
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    animation: fade-in-up 0.9s ease both 0.35s;
+    letter-spacing: 0.3px;
+  }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  .divider-gold {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gulf-gold-light), transparent);
+    margin: 28px auto;
+    border-radius: 2px;
+    animation: fade-in 1s ease both 0.5s;
+  }
 
-        /* Tabs */
-        .tabs-wrapper {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
+  /* ─── MAIN CONTENT ─── */
+  .content {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 16px 60px;
+  }
 
-        .tabs-header {
-            display: flex;
-            background-color: #EBF0F5;
-        }
+  /* ─── SECTION HEADERS ─── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 20px;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section-label.visible { opacity: 1; transform: translateX(0); }
+  .section-label .icon { font-size: 26px; }
+  .section-label h2 {
+    font-size: clamp(18px, 4vw, 24px);
+    font-weight: 700;
+    color: var(--gulf-gold-light);
+  }
+  .section-label-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(184,134,11,0.5), transparent);
+  }
 
-        .tab-btn {
-            flex: 1;
-            padding: 20px;
-            border: none;
-            background: none;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+  /* ─── STATUS CARDS ─── */
+  .card {
+    background: var(--gulf-navy-mid);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-card);
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+  }
+  .card.visible { opacity: 1; transform: translateY(0); }
+  .card:hover {
+    box-shadow: var(--shadow-card), 0 0 0 1px rgba(184,134,11,0.25);
+    border-color: rgba(184,134,11,0.22);
+    transform: translateY(-2px);
+  }
 
-        .tab-btn i {
-            margin-left: 8px;
-        }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .card-weeks {
+    font-size: clamp(15px, 3.5vw, 17px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .card-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    font-weight: 400;
+  }
 
-        .tab-btn.active {
-            color: var(--primary-blue);
-            background: var(--white);
-        }
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+  }
+  .badge-ok   { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-warn { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .badge-no   { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-border);   }
 
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background-color: var(--primary-gold);
-        }
+  .badge-ok::before   { content: '✓'; font-size: 13px; }
+  .badge-warn::before { content: '⚠'; font-size: 11px; }
+  .badge-no::before   { content: '✕'; font-size: 13px; }
 
-        .tab-content {
-            display: none;
-            padding: 40px;
-            animation: fadeIn 0.5s ease;
-        }
+  /* Card divider */
+  .card-sep {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    margin: 12px 0;
+  }
 
-        .tab-content.active {
-            display: block;
-        }
+  /* Card list */
+  .card ul {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+  .card ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .card ul li::before {
+    content: '›';
+    color: var(--gulf-gold-light);
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
+  /* BANNED card special style */
+  .card-banned {
+    border-color: rgba(220,38,38,0.35);
+    background: linear-gradient(135deg, rgba(220,38,38,0.08), rgba(10,22,40,0.95));
+    position: relative;
+    overflow: hidden;
+  }
+  .card-banned::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(220,38,38,0.04) 20px,
+      rgba(220,38,38,0.04) 40px
+    );
+    pointer-events: none;
+  }
+  .card-banned .card-weeks { color: #FCA5A5; }
 
-        /* Grid Cards */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
+  /* ─── DOCUMENTS SECTION ─── */
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .doc-item {
+    background: var(--gulf-navy-light);
+    border: 1px solid rgba(184,134,11,0.2);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s ease;
+  }
+  .doc-item.visible { opacity: 1; transform: scale(1); }
+  .doc-item:hover { background: rgba(26,53,87,0.9); }
+  .doc-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .doc-text {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+    font-weight: 500;
+  }
 
-        .card {
-            background: var(--white);
-            border-radius: 10px;
-            border: 1px solid #E1E8ED;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+  /* ─── NOTES SECTION ─── */
+  .notes-list {
+    display: grid;
+    gap: 10px;
+  }
+  .note-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--gulf-navy-mid);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .note-item.visible { opacity: 1; transform: translateX(0); }
+  .note-num {
+    background: rgba(184,134,11,0.15);
+    border: 1px solid rgba(184,134,11,0.35);
+    color: var(--gulf-gold-light);
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .note-text {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.65;
+  }
+  .note-text strong {
+    color: var(--gulf-gold-light);
+    font-weight: 600;
+  }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
+  /* ─── CONTACT BOX ─── */
+  .contact-box {
+    background: linear-gradient(135deg, rgba(184,134,11,0.12), rgba(184,134,11,0.05));
+    border: 1px solid rgba(184,134,11,0.35);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-top: 36px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .contact-box.visible { opacity: 1; transform: translateY(0); }
+  .contact-box h3 { font-size: 15px; color: var(--gulf-gold-light); font-weight: 700; margin-bottom: 14px; }
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: var(--text-light);
+    direction: ltr;
+    font-family: monospace;
+  }
+  .contact-pill .emoji { font-style: normal; }
 
-        .card-header {
-            padding: 20px;
-            color: var(--white);
-            font-weight: 700;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 24px 20px 40px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  footer .footer-logo {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
 
-        .header-uncomplicated { background: var(--success); }
-        .header-complicated { background: var(--danger); }
+  /* ─── PROGRESS BAR (weeks visual) ─── */
+  .weeks-visual {
+    background: var(--gulf-navy-light);
+    border: 1px solid rgba(184,134,11,0.15);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .weeks-visual.visible { opacity: 1; transform: translateY(0); }
+  .weeks-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .weeks-track {
+    position: relative;
+    height: 44px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+  }
+  .wt-green {
+    background: linear-gradient(90deg, #16A34A, #22C55E);
+    height: 100%;
+    position: relative;
+  }
+  .wt-amber {
+    background: linear-gradient(90deg, #D97706, #F59E0B);
+    height: 100%;
+  }
+  .wt-red {
+    background: linear-gradient(90deg, #DC2626, #EF4444);
+    height: 100%;
+  }
+  .wt-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    white-space: nowrap;
+    padding: 0 6px;
+  }
+  .weeks-legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .wl-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .wl-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 
-        .card-body {
-            padding: 25px;
-        }
+  /* ─── ANIMATIONS ─── */
+  @keyframes fade-in-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
 
-        .timeline-item {
-            position: relative;
-            padding-right: 30px;
-            margin-bottom: 25px;
-        }
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 560px) {
+    .hero { padding: 44px 16px 30px; }
+    .card { padding: 16px 14px; }
+    .card-header { flex-direction: column; align-items: flex-start; }
+    .docs-grid { grid-template-columns: 1fr 1fr; }
+    .contact-pill { font-size: 12px; padding: 7px 12px; }
+    .wt-label { font-size: 9px; }
+    .weeks-legend { gap: 10px; }
+  }
+  @media (max-width: 380px) {
+    .docs-grid { grid-template-columns: 1fr; }
+    .hero-plane { font-size: 44px; }
+    .card ul li { font-size: 13px; }
+  }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--primary-gold);
-            border: 3px solid #f9f5ed;
-            box-shadow: 0 0 0 1px var(--primary-gold);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            right: 5px;
-            top: 20px;
-            bottom: -25px;
-            width: 2px;
-            background-color: #E1E8ED;
-        }
-
-        .timeline-item:last-child::after {
-            display: none;
-        }
-
-        .timeline-title {
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 5px;
-        }
-
-        .timeline-desc {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-top: 8px;
-        }
-
-        .tag-doc { background: #E8F8F5; color: #16A085; }
-        .tag-escort { background: #FEF9E7; color: #F39C12; }
-        .tag-ban { background: #FDEDEC; color: #C0392B; }
-
-        /* Sections */
-        .section-title {
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-        }
-
-        .info-section {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.6s ease-out;
-        }
-
-        .info-section.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .list-group {
-            list-style: none;
-        }
-
-        .list-group li {
-            padding: 12px 0;
-            border-bottom: 1px solid #E1E8ED;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .list-group li i {
-            color: var(--primary-gold);
-            margin-top: 5px;
-        }
-
-        .list-group li:last-child {
-            border-bottom: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
-            .tabs-header { flex-direction: column; }
-            header h1 { font-size: 2rem; }
-        }
-    </style>
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1><i class="fa-solid fa-plane-departure" style="margin-left: 15px;"></i>طيران الخليج</h1>
-        <p>الدليل الشامل لسفر السيدات الحوامل</p>
-    </header>
+<!-- Background particles -->
+<div class="bg-canvas" id="bgCanvas"></div>
 
-    <div class="container">
-        <!-- Alert -->
-        <div class="alert-box">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <div>
-                <strong>قاعدة عامة للسلامة:</strong> 
-                لا يُسمح بجلوس السيدات الحوامل في أي مقعد من مقاعد مخرج الطوارئ (Exit Seats) على الطائرة تحت أي ظرف.
-            </div>
-        </div>
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="dedication">
+    <span class="heart">❤️</span>
+    <span>To my lovely Nairoba</span>
+    <span class="heart">❤️</span>
+  </div>
 
-        <!-- Main Tabs -->
-        <div class="tabs-wrapper">
-            <div class="tabs-header">
-                <button class="tab-btn active" onclick="openTab('single')">
-                    <i class="fa-solid fa-person-pregnant"></i> الحمل في طفل واحد
-                </button>
-                <button class="tab-btn" onclick="openTab('multiple')">
-                    <i class="fa-solid fa-baby-carriage"></i> الحمل المتعدد (توأم فما فوق)
-                </button>
-            </div>
+  <span class="hero-plane">✈️</span>
 
-            <!-- Tab 1: Single Pregnancy -->
-            <div id="single" class="tab-content active">
-                <div class="grid-2">
-                    <!-- Uncomplicated -->
-                    <div class="card">
-                        <div class="card-header header-uncomplicated">
-                            <i class="fa-solid fa-check-circle"></i> بدون مضاعفات
-                        </div>
-                        <div class="card-body">
-                            <div class="timeline-item">
-                                <div class="timeline-title">حتى 33 أسبوعاً و 6 أيام</div>
-                                <div class="timeline-desc">يُطلب إحضار وثيقة "لائق للسفر" (Fit for Travel) صادرة من الطبيب خلال 10 أيام من موعد السفر.</div>
-                                <span class="tag tag-doc">لا يُشترط وجود مرافق</span>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-title">من 33 أسبوع و 7 أيام إلى 35 أسبوع و 6 أيام</div>
-                                <div class="timeline-desc">يجب التقديم على نموذج (CMP) للحصول على موافقة طبيب طيران الخليج قبل 72 ساعة.</div>
-                                <span class="tag tag-escort">مرافق فقط إذا طلب طبيب الشركة</span>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-title">36 أسبوعاً فما فوق</div>
-                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
-                                <span class="tag tag-ban">ممنوع السفر</span>
-                            </div>
-                        </div>
-                    </div>
+  <h1 class="hero-title">
+    دليل سفر <span>الحوامل</span> مع Gulf Air
+  </h1>
+  <p class="hero-sub">مستخرج من Ground Services Manual – Rev 07 – يناير 2026</p>
 
-                    <!-- Complicated -->
-                    <div class="card">
-                        <div class="card-header header-complicated">
-                            <i class="fa-solid fa-notes-medical"></i> مع وجود مضاعفات
-                        </div>
-                        <div class="card-body">
-                            <div class="timeline-item">
-                                <div class="timeline-title">حتى 35 أسبوعاً و 6 أيام</div>
-                                <div class="timeline-desc">يجب التقديم على نموذج (CMP) للحصول على موافقة طبيب طيران الخليج قبل 72 ساعة من موعد السفر.</div>
-                                <span class="tag tag-escort">يُشترط وجود مرافق للمسافرة</span>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-title">36 أسبوعاً فما فوق</div>
-                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
-                                <span class="tag tag-ban">ممنوع السفر</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="divider-gold"></div>
+</header>
 
-            <!-- Tab 2: Multiple Pregnancy -->
-            <div id="multiple" class="tab-content">
-                <div class="grid-2">
-                    <!-- Uncomplicated -->
-                    <div class="card">
-                        <div class="card-header header-uncomplicated">
-                            <i class="fa-solid fa-check-circle"></i> بدون مضاعفات
-                        </div>
-                        <div class="card-body">
-                            <div class="timeline-item">
-                                <div class="timeline-title">حتى 31 أسبوعاً و 6 أيام</div>
-                                <div class="timeline-desc">يُطلب إحضار وثيقة "لائق للسفر" (Fit for Travel) صادرة من الطبيب المعالج خلال 10 أيام من موعد السفر.</div>
-                                <span class="tag tag-doc">لا يُشترط وجود مرافق</span>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-title">32 أسبوعاً فما فوق</div>
-                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
-                                <span class="tag tag-ban">ممنوع السفر</span>
-                            </div>
-                        </div>
-                    </div>
+<!-- ─── CONTENT ─── -->
+<main class="content">
 
-                    <!-- Complicated -->
-                    <div class="card">
-                        <div class="card-header header-complicated">
-                            <i class="fa-solid fa-notes-medical"></i> مع وجود مضاعفات
-                        </div>
-                        <div class="card-body">
-                            <div class="timeline-item">
-                                <div class="timeline-title">حتى 31 أسبوعاً و 6 أيام</div>
-                                <div class="timeline-desc">يجب التقديم على نموذج (CMP) للحصول على موافقة طبيب طيران الخليج قبل 72 ساعة من موعد السفر.</div>
-                                <span class="tag tag-escort">يُشترط وجود مرافق للمسافرة</span>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-title">32 أسبوعاً فما فوق</div>
-                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
-                                <span class="tag tag-ban">ممنوع السفر</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Medical Documents -->
-        <div class="info-section scroll-reveal">
-            <h2 class="section-title"><i class="fa-solid fa-file-medical"></i> المستندات الطبية المطلوبة</h2>
-            <ul class="list-group">
-                <li>
-                    <i class="fa-solid fa-circle-xmark" style="color: var(--danger);"></i>
-                    <div>لن يتم قبول سفر أي سيدة حامل لا تحمل <strong>"خطاب ولادة" (Letter of Confinement)</strong>.</div>
-                </li>
-                <li>
-                    <i class="fa-solid fa-download"></i>
-                    <div>يمكن تنزيل وثيقة "لائق للسفر" أو نموذج (CMP) من موقع طيران الخليج، أو يمكن للطبيب إصدارها بتنسيق مختلف بشرط احتواء جميع المعلومات.</div>
-                </li>
-                <li>
-                    <i class="fa-solid fa-list-check"></i>
-                    <div>
-                        <strong>يجب أن تتضمن وثيقة "لائق للسفر" التفاصيل التالية:</strong>
-                        <ul style="margin-top: 10px; margin-right: 20px; list-style-type: disc; color: var(--text-light);">
-                            <li>اسم المريضة وتاريخ ميلادها.</li>
-                            <li>تاريخ آخر دورة شهرية وتاريخ الولادة المتوقع.</li>
-                            <li>عدد أسابيع الحمل الدقيق.</li>
-                            <li>تواريخ السفر المقترحة على الطائرة.</li>
-                            <li>تأكيد صريح على أنه حمل في طفل واحد وبدون مضاعفات (إذا انطبق).</li>
-                            <li>إقرار بأنها لائقة طبياً للسفر (ذهاباً وإياباً).</li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Section: Important Notes -->
-        <div class="info-section scroll-reveal">
-            <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> ملاحظات هامة في المطار</h2>
-            <ul class="list-group">
-                <li>
-                    <i class="fa-solid fa-calculator"></i>
-                    <div>
-                        <strong>حساب أسابيع الحمل:</strong> عند الوصول إلى (28 أسبوعاً و 7 أيام) يُحسب كالأسبوع 29. بينما (28 أسبوعاً و 6 أيام) يُعتبر 28 أسبوعاً فقط.
-                    </div>
-                </li>
-                <li>
-                    <i class="fa-solid fa-headset"></i>
-                    <div>
-                        في حال وجود شك لدى موظفي المطار أو وجود حالة طبية طارئة، سيتواصل الموظفون فوراً مع <strong>مركز التحكم في الحجوزات (CRC)</strong> للتنسيق مع الخدمات الطبية التابعة للشركة.
-                    </div>
-                </li>
-                <li>
-                    <i class="fa-solid fa-ban"></i>
-                    <div>
-                        لن يتم منح الموافقة للسفر في حال عدم توفر الشهادات الطبية المذكورة أعلاه.
-                    </div>
-                </li>
-            </ul>
-        </div>
-
+  <!-- WEEKS VISUAL -->
+  <div class="weeks-visual anim-el">
+    <p class="weeks-label">🗓️ جدول الأسابيع المسموح بها — حمل مفرد</p>
+    <div class="weeks-track">
+      <div class="wt-green" style="width:56%" id="seg-green">
+        <span class="wt-label">✓ مسموح &nbsp;| حتى الأسبوع 33+6</span>
+      </div>
+      <div class="wt-amber" style="width:22%" id="seg-amber">
+        <span class="wt-label">⚠ مستند | 34–35+6</span>
+      </div>
+      <div class="wt-red" style="width:22%" id="seg-red">
+        <span class="wt-label">✕ ممنوع</span>
+      </div>
     </div>
+    <div class="weeks-legend">
+      <div class="wl-item"><div class="wl-dot" style="background:#22C55E"></div>حتى الأسبوع 33+6 – مسموح</div>
+      <div class="wl-item"><div class="wl-dot" style="background:#F59E0B"></div>33+7 حتى 35+6 – يلزم مستند</div>
+      <div class="wl-item"><div class="wl-dot" style="background:#EF4444"></div>36 أسابيع فأكثر – ممنوع</div>
+    </div>
+  </div>
 
-    <script>
-        // Tab switching logic
-        function openTab(tabId) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabId).classList.add('active');
-            // Add active class to clicked button
-            event.currentTarget.classList.add('active');
-        }
+  <!-- ═══════════════════════════ SECTION 1 ═══════════════════════════ -->
+  <div class="section-label anim-el">
+    <span class="icon">🤰</span>
+    <h2>حمل مفرد (Single Pregnancy)</h2>
+    <div class="section-label-line"></div>
+  </div>
 
-        // Scroll Reveal Animation
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+  <!-- Card 1 -->
+  <div class="card anim-el">
+    <div class="card-header">
+      <div>
+        <div class="card-weeks">حتى الأسبوع 33 + 6 أيام</div>
+        <div class="card-sub">حمل طبيعي غير مُعقَّد</div>
+      </div>
+      <span class="badge badge-ok">مسموح بالسفر</span>
+    </div>
+    <hr class="card-sep">
+    <ul>
+      <li>لا يلزم موافقة طبية من Gulf Air</li>
+      <li>الجلوس في أي مقعد <strong style="color:var(--gulf-gold-light)">عدا مقاعد مخارج الطوارئ</strong></li>
+      <li>يُنصح بالجلوس قريباً من الحمام</li>
+      <li>عدد غير محدود من الحوامل على نفس الرحلة</li>
+    </ul>
+  </div>
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+  <!-- Card 2 -->
+  <div class="card anim-el">
+    <div class="card-header">
+      <div>
+        <div class="card-weeks">من الأسبوع 33+7 حتى 35+6 أيام</div>
+        <div class="card-sub">حمل طبيعي غير مُعقَّد</div>
+      </div>
+      <span class="badge badge-warn">يلزم مستند طبي</span>
+    </div>
+    <hr class="card-sep">
+    <ul>
+      <li>مطلوب تقديم طلب <strong style="color:var(--gulf-gold-light)">CMP</strong> للحصول على موافقة دكتور Gulf Air <strong style="color:var(--gulf-gold-light)">قبل 72 ساعة</strong> من السفر</li>
+      <li>مطلوب شهادة <strong style="color:var(--gulf-gold-light)">"لياقة للسفر" (Fit for Travel)</strong> من الدكتور الخاص، صادرة خلال <strong style="color:var(--gulf-gold-light)">10 أيام</strong> من تاريخ السفر</li>
+      <li>الجلوس في أي مكان عدا مخارج الطوارئ</li>
+    </ul>
+  </div>
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+  <!-- Card 3 -->
+  <div class="card anim-el">
+    <div class="card-header">
+      <div>
+        <div class="card-weeks">حمل مُعقَّد (Complicated) — حتى 35 أسبوع</div>
+      </div>
+      <span class="badge badge-warn">يلزم موافقة طبية</span>
+    </div>
+    <hr class="card-sep">
+    <ul>
+      <li>مطلوب <strong style="color:var(--gulf-gold-light)">موافقة طبية رسمية من Gulf Air</strong> (GF Medical Clearance)</li>
+      <li>نفس اشتراطات المستند الطبي المذكورة أعلاه</li>
+    </ul>
+  </div>
+
+  <!-- Card 4 BANNED -->
+  <div class="card card-banned anim-el">
+    <div class="card-header">
+      <div>
+        <div class="card-weeks">من الأسبوع 36 فأكثر (35 أسبوع + 7 أيام)</div>
+      </div>
+      <span class="badge badge-no">ممنوع نهائياً</span>
+    </div>
+    <hr class="card-sep">
+    <ul>
+      <li style="color:#FCA5A5">لا يُقبل السفر على <strong style="color:#FCA5A5">أي رحلات Gulf Air</strong> بدون أي استثناء</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════ SECTION 2 ═══════════════════════════ -->
+  <div class="section-label anim-el" style="margin-top:48px">
+    <span class="icon">👶👶</span>
+    <h2>حمل متعدد (توأم أو أكثر)</h2>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- Multiple 1 -->
+  <div class="card anim-el">
+    <div class="card-header">
+      <div>
+        <div class="card-weeks">حتى الأسبوع 31 + 6 أيام</div>
+        <div class="card-sub">حمل متعدد طبيعي غير مُعقَّد</div>
+      </div>
+      <span class="badge badge-ok">مسموح</span>
+    </div>
+    <hr class="card-sep">
+    <ul>
+      <li>مطلوب شهادة <strong style="color:var(--gulf-gold-light)">"لياقة للسفر"</strong> من الدكتور الخاص خلال <strong style="color:var(--gulf-gold-light)">10 أيام</strong> من تاريخ السفر</li>
+    </ul>
+  </div>
+
+  <!-- Multiple 2 -->
+  <div class="card anim-el">
+    <div class="card-header">
+      <div>
+        <div class="card-weeks">حمل متعدد مُعقَّد — حتى 31 أسبوع + 6 أيام</div>
+      </div>
+      <span class="badge badge-warn">يلزم CMP</span>
+    </div>
+    <hr class="card-sep">
+    <ul>
+      <li>تقديم نموذج <strong style="color:var(--gulf-gold-light)">CMP</strong> للحصول على موافقة دكتور Gulf Air <strong style="color:var(--gulf-gold-light)">قبل 72 ساعة</strong> من السفر</li>
+    </ul>
+  </div>
+
+  <!-- Multiple 3 BANNED -->
+  <div class="card card-banned anim-el">
+    <div class="card-header">
+      <div>
+        <div class="card-weeks">من الأسبوع 32 فأكثر (31 + 7 أيام)</div>
+        <div class="card-sub">حمل متعدد</div>
+      </div>
+      <span class="badge badge-no">ممنوع</span>
+    </div>
+    <hr class="card-sep">
+    <ul>
+      <li style="color:#FCA5A5">غير مقبول على أي رحلات Gulf Air</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════ SECTION 3 ═══════════════════════════ -->
+  <div class="section-label anim-el" style="margin-top:48px">
+    <span class="icon">📋</span>
+    <h2>مستندات "لياقة للسفر" — ما يجب أن تحتويه</h2>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="card anim-el" style="margin-bottom:6px">
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;line-height:1.6">
+      الشهادة تُصدَر من الدكتور الخاص وتكون صالحة خلال <strong style="color:var(--gulf-gold-light)">10 أيام</strong> من تاريخ السفر وتشمل:
+    </p>
+    <div class="docs-grid">
+      <div class="doc-item anim-el"><span class="doc-icon">👤</span><span class="doc-text">اسم المريضة وتاريخ الميلاد</span></div>
+      <div class="doc-item anim-el"><span class="doc-icon">🩸</span><span class="doc-text">تاريخ آخر دورة شهرية (LMP)</span></div>
+      <div class="doc-item anim-el"><span class="doc-icon">📅</span><span class="doc-text">التاريخ المتوقع للولادة (EDD)</span></div>
+      <div class="doc-item anim-el"><span class="doc-icon">⏱️</span><span class="doc-text">عدد أسابيع الحمل</span></div>
+      <div class="doc-item anim-el"><span class="doc-icon">✈️</span><span class="doc-text">تواريخ السفر المقترحة</span></div>
+      <div class="doc-item anim-el"><span class="doc-icon">✅</span><span class="doc-text">تأكيد أن الحمل عادي وغير مُعقَّد</span></div>
+      <div class="doc-item anim-el"><span class="doc-icon">💚</span><span class="doc-text">تأكيد اللياقة للسفر (ذهاباً وإياباً)</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ SECTION 4 ═══════════════════════════ -->
+  <div class="section-label anim-el" style="margin-top:48px">
+    <span class="icon">📝</span>
+    <h2>ملاحظات مهمة</h2>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="notes-list">
+    <div class="note-item anim-el">
+      <div class="note-num">1</div>
+      <div class="note-text">موظف الـ check-in <strong>ملزم بسؤال الحامل</strong> عن عدد أسابيع الحمل بأسلوب لبق وسري</div>
+    </div>
+    <div class="note-item anim-el">
+      <div class="note-num">2</div>
+      <div class="note-text">على الحامل <strong>إبلاغ Gulf Air</strong> بتطورات الحمل عند الحجز وعند الـ check-in</div>
+    </div>
+    <div class="note-item anim-el">
+      <div class="note-num">3</div>
+      <div class="note-text"><strong>حساب الأسابيع:</strong> 29 أسابيع = 28 أسبوع و7 أيام — أما 28 أسبوع و6 أيام = 28 أسبوع فقط</div>
+    </div>
+    <div class="note-item anim-el">
+      <div class="note-num">4</div>
+      <div class="note-text">الحامل التي تم قبولها في رحلة <strong>لا يجوز إنزالها</strong> في محطات لاحقة ما لم تتدهور حالتها الصحية</div>
+    </div>
+    <div class="note-item anim-el">
+      <div class="note-num">5</div>
+      <div class="note-text">الحامل <strong>لا تجلس في مقاعد مخارج الطوارئ</strong> — ويُفضَّل جلوسها قريباً من الحمام</div>
+    </div>
+    <div class="note-item anim-el">
+      <div class="note-num">6</div>
+      <div class="note-text">على <strong>رحلات الكود شير (Codeshare)</strong> تُطبَّق قواعد الناقل المُشغِّل (Operating Carrier)</div>
+    </div>
+    <div class="note-item anim-el">
+      <div class="note-num">7</div>
+      <div class="note-text">نموذج <strong>CMP</strong> والشهادة الطبية متاحان للتحميل من موقع Gulf Air الرسمي</div>
+    </div>
+    <div class="note-item anim-el">
+      <div class="note-num">8</div>
+      <div class="note-text">في حالة الشك أو المضاعفات، يتم التواصل مع <strong>CRC</strong> الذين يُنسِّقون مع الخدمات الطبية</div>
+    </div>
+  </div>
+
+  <!-- CONTACT BOX -->
+  <div class="contact-box anim-el">
+    <h3>📞 للتواصل مع CRC – مركز دعم العملاء الطبي</h3>
+    <div class="contact-info">
+      <div class="contact-pill"><span class="emoji">📧</span> bahrogf@gulfair.com</div>
+      <div class="contact-pill"><span class="emoji">📞</span> (+973) 17338420</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <span class="footer-logo">✈️</span>
+  <div>Gulf Air – Ground Services Manual</div>
+  <div>Revision 07 | 15 January 2026 | Chapter 2.7 & 2.21</div>
+  <div style="margin-top:8px;color:rgba(160,168,184,0.6)">هذه المعلومات مستخرجة من الدليل الرسمي — يُنصح دائماً بالتحقق مع Gulf Air قبل السفر</div>
+</footer>
+
+<script>
+// ─── BACKGROUND PARTICLES ───
+(function() {
+  const canvas = document.getElementById('bgCanvas');
+  const count = 18;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 14;
+    const dur = Math.random() * 16 + 14;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${left}%;
+      animation-delay:${delay}s;
+      animation-duration:${dur}s;
+    `;
+    canvas.appendChild(p);
+  }
+})();
+
+// ─── SCROLL ANIMATIONS ───
+(function() {
+  const els = document.querySelectorAll('.anim-el');
+  const delays = [0, 80, 160, 240, 320, 400, 480, 560, 640];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('anim-el'));
+        const idx = siblings.indexOf(el);
+        const delay = delays[Math.min(idx, delays.length - 1)] || 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  els.forEach(el => observer.observe(el));
+})();
+
+// ─── WEEKS TRACK ANIMATION ───
+(function() {
+  const segments = ['seg-green', 'seg-amber', 'seg-red'];
+  const targets = ['56%', '22%', '22%'];
+  segments.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.width = '0';
+    setTimeout(() => {
+      el.style.transition = 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+      el.style.width = targets[i];
+    }, 700 + i * 200);
+  });
+})();
+</script>
+
 </body>
 </html>
