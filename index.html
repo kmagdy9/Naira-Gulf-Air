@@ -454,6 +454,12 @@
     font-weight: 600;
     text-align: center;
   }
+  .weeks-track-wrap {
+    direction: ltr;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+  }
   .weeks-track {
     position: relative;
     height: 44px;
@@ -462,19 +468,28 @@
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
     display: flex;
+    direction: ltr;
   }
   .wt-green {
     background: linear-gradient(90deg, #16A34A, #22C55E);
     height: 100%;
     position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
   }
   .wt-amber {
     background: linear-gradient(90deg, #D97706, #F59E0B);
     height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
   }
   .wt-red {
     background: linear-gradient(90deg, #DC2626, #EF4444);
     height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
   }
   .wt-label {
     position: absolute;
@@ -485,26 +500,33 @@
     font-size: 11px;
     font-weight: 700;
     color: white;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
     white-space: nowrap;
-    padding: 0 6px;
+    padding: 0 8px;
+    direction: rtl;
+    pointer-events: none;
+  }
+  /* hide inline labels on narrow segments – show below instead */
+  .wt-label-below {
+    display: none;
   }
   .weeks-legend {
     display: flex;
-    gap: 16px;
+    gap: 12px 20px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 12px;
+    margin-top: 14px;
+    direction: rtl;
   }
   .wl-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 11px;
+    gap: 7px;
+    font-size: 12px;
     color: var(--text-muted);
   }
   .wl-dot {
-    width: 10px; height: 10px;
+    width: 11px; height: 11px;
     border-radius: 50%;
     flex-shrink: 0;
   }
@@ -530,13 +552,18 @@
     .card-header { flex-direction: column; align-items: flex-start; }
     .docs-grid { grid-template-columns: 1fr 1fr; }
     .contact-pill { font-size: 12px; padding: 7px 12px; }
+    .wt-label { font-size: 10px; padding: 0 4px; }
+    .weeks-legend { gap: 8px 14px; }
+  }
+  @media (max-width: 480px) {
     .wt-label { font-size: 9px; }
-    .weeks-legend { gap: 10px; }
+    .weeks-track { height: 38px; }
   }
   @media (max-width: 380px) {
     .docs-grid { grid-template-columns: 1fr; }
     .hero-plane { font-size: 44px; }
     .card ul li { font-size: 13px; }
+    .wt-label { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -551,11 +578,7 @@
 
 <!-- ─── HERO ─── -->
 <header class="hero">
-  <div class="dedication">
-    <span class="heart">❤️</span>
-    <span>To my lovely Nairoba</span>
-    <span class="heart">❤️</span>
-  </div>
+
 
   <span class="hero-plane">✈️</span>
 
@@ -573,21 +596,23 @@
   <!-- WEEKS VISUAL -->
   <div class="weeks-visual anim-el">
     <p class="weeks-label">🗓️ جدول الأسابيع المسموح بها — حمل مفرد</p>
-    <div class="weeks-track">
-      <div class="wt-green" style="width:56%" id="seg-green">
-        <span class="wt-label">✓ مسموح &nbsp;| حتى الأسبوع 33+6</span>
-      </div>
-      <div class="wt-amber" style="width:22%" id="seg-amber">
-        <span class="wt-label">⚠ مستند | 34–35+6</span>
-      </div>
-      <div class="wt-red" style="width:22%" id="seg-red">
-        <span class="wt-label">✕ ممنوع</span>
+    <div class="weeks-track-wrap">
+      <div class="weeks-track">
+        <div class="wt-green" style="width:0%" id="seg-green">
+          <span class="wt-label">✓ مسموح — حتى 33+6</span>
+        </div>
+        <div class="wt-amber" style="width:0%" id="seg-amber">
+          <span class="wt-label">⚠ يلزم مستند</span>
+        </div>
+        <div class="wt-red" style="width:0%" id="seg-red">
+          <span class="wt-label">✕ ممنوع</span>
+        </div>
       </div>
     </div>
     <div class="weeks-legend">
-      <div class="wl-item"><div class="wl-dot" style="background:#22C55E"></div>حتى الأسبوع 33+6 – مسموح</div>
-      <div class="wl-item"><div class="wl-dot" style="background:#F59E0B"></div>33+7 حتى 35+6 – يلزم مستند</div>
-      <div class="wl-item"><div class="wl-dot" style="background:#EF4444"></div>36 أسابيع فأكثر – ممنوع</div>
+      <div class="wl-item"><div class="wl-dot" style="background:#22C55E"></div>حتى الأسبوع 33+6 — مسموح</div>
+      <div class="wl-item"><div class="wl-dot" style="background:#F59E0B"></div>33+7 حتى 35+6 — يلزم مستند طبي</div>
+      <div class="wl-item"><div class="wl-dot" style="background:#EF4444"></div>36 أسابيع فأكثر — ممنوع</div>
     </div>
   </div>
 
@@ -841,16 +866,35 @@
 
 // ─── WEEKS TRACK ANIMATION ───
 (function() {
-  const segments = ['seg-green', 'seg-amber', 'seg-red'];
-  const targets = ['56%', '22%', '22%'];
-  segments.forEach((id, i) => {
+  const segments = [
+    { id: 'seg-green', target: '58%', delay: 600 },
+    { id: 'seg-amber', target: '20%', delay: 900 },
+    { id: 'seg-red',   target: '22%', delay: 1200 }
+  ];
+
+  function hideLabelIfNarrow(el, minWidth) {
+    const label = el.querySelector('.wt-label');
+    if (!label) return;
+    const observer = new ResizeObserver(() => {
+      label.style.opacity = el.offsetWidth < minWidth ? '0' : '1';
+    });
+    observer.observe(el);
+  }
+
+  segments.forEach(({ id, target, delay }) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.style.width = '0';
+    el.style.width = '0%';
+    el.style.flexShrink = '0';
+    const label = el.querySelector('.wt-label');
+    if (label) label.style.transition = 'opacity 0.3s ease';
+
     setTimeout(() => {
-      el.style.transition = 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-      el.style.width = targets[i];
-    }, 700 + i * 200);
+      el.style.transition = 'width 1.1s cubic-bezier(0.4, 0, 0.2, 1)';
+      el.style.width = target;
+    }, delay);
+
+    hideLabelIfNarrow(el, 90);
   });
 })();
 </script>
