@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل سفر الحوامل - طيران الخليج</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #002D56; /* Gulf Air Navy */
+            --primary-gold: #C09A5B; /* Gulf Air Gold */
+            --light-bg: #F5F7FA;
+            --white: #FFFFFF;
+            --text-dark: #2C3E50;
+            --text-light: #596A7A;
+            --danger: #E74C3C;
+            --success: #27AE60;
+            --warning: #F39C12;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #001A33 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(192, 154, 91, 0.1) 0%, transparent 60%);
+            animation: rotateBg 20s linear infinite;
+        }
+
+        @keyframes rotateBg {
+            100% { transform: rotate(360deg); }
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            color: var(--primary-gold);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: -30px auto 50px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Alert Box */
+        .alert-box {
+            background-color: #FEF9E7;
+            border-right: 5px solid var(--warning);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .alert-box i {
+            color: var(--warning);
+            font-size: 1.8rem;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tabs */
+        .tabs-wrapper {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .tabs-header {
+            display: flex;
+            background-color: #EBF0F5;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            background: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-btn i {
+            margin-left: 8px;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-blue);
+            background: var(--white);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: var(--primary-gold);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Grid Cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            border: 1px solid #E1E8ED;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            padding: 20px;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-uncomplicated { background: var(--success); }
+        .header-complicated { background: var(--danger); }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-right: 30px;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary-gold);
+            border: 3px solid #f9f5ed;
+            box-shadow: 0 0 0 1px var(--primary-gold);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            right: 5px;
+            top: 20px;
+            bottom: -25px;
+            width: 2px;
+            background-color: #E1E8ED;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .timeline-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .tag-doc { background: #E8F8F5; color: #16A085; }
+        .tag-escort { background: #FEF9E7; color: #F39C12; }
+        .tag-ban { background: #FDEDEC; color: #C0392B; }
+
+        /* Sections */
+        .section-title {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .info-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+
+        .info-section.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .list-group {
+            list-style: none;
+        }
+
+        .list-group li {
+            padding: 12px 0;
+            border-bottom: 1px solid #E1E8ED;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .list-group li i {
+            color: var(--primary-gold);
+            margin-top: 5px;
+        }
+
+        .list-group li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .tabs-header { flex-direction: column; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fa-solid fa-plane-departure" style="margin-left: 15px;"></i>طيران الخليج</h1>
+        <p>الدليل الشامل لسفر السيدات الحوامل</p>
+    </header>
+
+    <div class="container">
+        <!-- Alert -->
+        <div class="alert-box">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+                <strong>قاعدة عامة للسلامة:</strong> 
+                لا يُسمح بجلوس السيدات الحوامل في أي مقعد من مقاعد مخرج الطوارئ (Exit Seats) على الطائرة تحت أي ظرف.
+            </div>
+        </div>
+
+        <!-- Main Tabs -->
+        <div class="tabs-wrapper">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="openTab('single')">
+                    <i class="fa-solid fa-person-pregnant"></i> الحمل في طفل واحد
+                </button>
+                <button class="tab-btn" onclick="openTab('multiple')">
+                    <i class="fa-solid fa-baby-carriage"></i> الحمل المتعدد (توأم فما فوق)
+                </button>
+            </div>
+
+            <!-- Tab 1: Single Pregnancy -->
+            <div id="single" class="tab-content active">
+                <div class="grid-2">
+                    <!-- Uncomplicated -->
+                    <div class="card">
+                        <div class="card-header header-uncomplicated">
+                            <i class="fa-solid fa-check-circle"></i> بدون مضاعفات
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline-item">
+                                <div class="timeline-title">حتى 33 أسبوعاً و 6 أيام</div>
+                                <div class="timeline-desc">يُطلب إحضار وثيقة "لائق للسفر" (Fit for Travel) صادرة من الطبيب خلال 10 أيام من موعد السفر.</div>
+                                <span class="tag tag-doc">لا يُشترط وجود مرافق</span>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">من 33 أسبوع و 7 أيام إلى 35 أسبوع و 6 أيام</div>
+                                <div class="timeline-desc">يجب التقديم على نموذج (CMP) للحصول على موافقة طبيب طيران الخليج قبل 72 ساعة.</div>
+                                <span class="tag tag-escort">مرافق فقط إذا طلب طبيب الشركة</span>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">36 أسبوعاً فما فوق</div>
+                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
+                                <span class="tag tag-ban">ممنوع السفر</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Complicated -->
+                    <div class="card">
+                        <div class="card-header header-complicated">
+                            <i class="fa-solid fa-notes-medical"></i> مع وجود مضاعفات
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline-item">
+                                <div class="timeline-title">حتى 35 أسبوعاً و 6 أيام</div>
+                                <div class="timeline-desc">يجب التقديم على نموذج (CMP) للحصول على موافقة طبيب طيران الخليج قبل 72 ساعة من موعد السفر.</div>
+                                <span class="tag tag-escort">يُشترط وجود مرافق للمسافرة</span>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">36 أسبوعاً فما فوق</div>
+                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
+                                <span class="tag tag-ban">ممنوع السفر</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Multiple Pregnancy -->
+            <div id="multiple" class="tab-content">
+                <div class="grid-2">
+                    <!-- Uncomplicated -->
+                    <div class="card">
+                        <div class="card-header header-uncomplicated">
+                            <i class="fa-solid fa-check-circle"></i> بدون مضاعفات
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline-item">
+                                <div class="timeline-title">حتى 31 أسبوعاً و 6 أيام</div>
+                                <div class="timeline-desc">يُطلب إحضار وثيقة "لائق للسفر" (Fit for Travel) صادرة من الطبيب المعالج خلال 10 أيام من موعد السفر.</div>
+                                <span class="tag tag-doc">لا يُشترط وجود مرافق</span>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">32 أسبوعاً فما فوق</div>
+                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
+                                <span class="tag tag-ban">ممنوع السفر</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Complicated -->
+                    <div class="card">
+                        <div class="card-header header-complicated">
+                            <i class="fa-solid fa-notes-medical"></i> مع وجود مضاعفات
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline-item">
+                                <div class="timeline-title">حتى 31 أسبوعاً و 6 أيام</div>
+                                <div class="timeline-desc">يجب التقديم على نموذج (CMP) للحصول على موافقة طبيب طيران الخليج قبل 72 ساعة من موعد السفر.</div>
+                                <span class="tag tag-escort">يُشترط وجود مرافق للمسافرة</span>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">32 أسبوعاً فما فوق</div>
+                                <div class="timeline-desc">غير مسموح بالسفر نهائياً لأسباب تتعلق بالسلامة.</div>
+                                <span class="tag tag-ban">ممنوع السفر</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Medical Documents -->
+        <div class="info-section scroll-reveal">
+            <h2 class="section-title"><i class="fa-solid fa-file-medical"></i> المستندات الطبية المطلوبة</h2>
+            <ul class="list-group">
+                <li>
+                    <i class="fa-solid fa-circle-xmark" style="color: var(--danger);"></i>
+                    <div>لن يتم قبول سفر أي سيدة حامل لا تحمل <strong>"خطاب ولادة" (Letter of Confinement)</strong>.</div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-download"></i>
+                    <div>يمكن تنزيل وثيقة "لائق للسفر" أو نموذج (CMP) من موقع طيران الخليج، أو يمكن للطبيب إصدارها بتنسيق مختلف بشرط احتواء جميع المعلومات.</div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-list-check"></i>
+                    <div>
+                        <strong>يجب أن تتضمن وثيقة "لائق للسفر" التفاصيل التالية:</strong>
+                        <ul style="margin-top: 10px; margin-right: 20px; list-style-type: disc; color: var(--text-light);">
+                            <li>اسم المريضة وتاريخ ميلادها.</li>
+                            <li>تاريخ آخر دورة شهرية وتاريخ الولادة المتوقع.</li>
+                            <li>عدد أسابيع الحمل الدقيق.</li>
+                            <li>تواريخ السفر المقترحة على الطائرة.</li>
+                            <li>تأكيد صريح على أنه حمل في طفل واحد وبدون مضاعفات (إذا انطبق).</li>
+                            <li>إقرار بأنها لائقة طبياً للسفر (ذهاباً وإياباً).</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section: Important Notes -->
+        <div class="info-section scroll-reveal">
+            <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> ملاحظات هامة في المطار</h2>
+            <ul class="list-group">
+                <li>
+                    <i class="fa-solid fa-calculator"></i>
+                    <div>
+                        <strong>حساب أسابيع الحمل:</strong> عند الوصول إلى (28 أسبوعاً و 7 أيام) يُحسب كالأسبوع 29. بينما (28 أسبوعاً و 6 أيام) يُعتبر 28 أسبوعاً فقط.
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-headset"></i>
+                    <div>
+                        في حال وجود شك لدى موظفي المطار أو وجود حالة طبية طارئة، سيتواصل الموظفون فوراً مع <strong>مركز التحكم في الحجوزات (CRC)</strong> للتنسيق مع الخدمات الطبية التابعة للشركة.
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-ban"></i>
+                    <div>
+                        لن يتم منح الموافقة للسفر في حال عدم توفر الشهادات الطبية المذكورة أعلاه.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Tab switching logic
+        function openTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            // Add active class to clicked button
+            event.currentTarget.classList.add('active');
+        }
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
